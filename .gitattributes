@@ -1,0 +1,8 @@
+# 源码统一 LF；Windows 批处理必须是 CRLF（cmd.exe 对 LF 的批处理容错不稳）
+* text=auto eol=lf
+*.cmd text eol=crlf
+*.bat text eol=crlf
+*.png binary
+*.jpg binary
+*.ico binary
+*.exe binary

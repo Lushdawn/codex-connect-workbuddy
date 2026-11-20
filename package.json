@@ -1,0 +1,49 @@
+{
+  "name": "codex-connect-workbuddy",
+  "version": "0.1.0",
+  "description": "Use your locally signed-in WorkBuddy models inside Codex / Codex++ through a local OpenAI-compatible proxy.",
+  "license": "MIT",
+  "author": "Lushdawn",
+  "type": "module",
+  "engines": {
+    "node": ">=22.19.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Lushdawn/codex-connect-workbuddy.git"
+  },
+  "homepage": "https://github.com/Lushdawn/codex-connect-workbuddy#readme",
+  "bugs": {
+    "url": "https://github.com/Lushdawn/codex-connect-workbuddy/issues"
+  },
+  "keywords": [
+    "codex",
+    "codex-plus-plus",
+    "workbuddy",
+    "openai-compatible",
+    "local-proxy",
+    "llm-gateway"
+  ],
+  "bin": {
+    "wbx": "./src/cli.ts"
+  },
+  "scripts": {
+    "dev": "tsx src/cli.ts serve --open",
+    "doctor": "tsx src/cli.ts doctor",
+    "models": "tsx src/cli.ts models",
+    "check": "tsc --noEmit",
+    "build": "esbuild src/cli.ts --bundle --platform=node --format=esm --target=node22 --outfile=dist/wbx.mjs",
+    "build:cjs": "esbuild src/sea-entry.ts --bundle --platform=node --format=cjs --target=node22 --outfile=dist/sea/wbx.cjs",
+    "build:sea": "node --experimental-sea-config sea-config.json",
+    "build:exe": "npm run build && npm run build:cjs && npm run build:sea && node scripts/make-exe.mjs",
+    "start": "node dist/wbx.mjs serve --open",
+    "stop": "node dist/wbx.mjs stop"
+  },
+  "devDependencies": {
+    "@types/node": "^22.18.0",
+    "esbuild": "^0.28.2",
+    "postject": "^1.0.0-alpha.6",
+    "tsx": "^4.23.15",
+    "typescript": "^5.9.2"
+  }
+}
